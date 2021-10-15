@@ -1,16 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
-  render() {
-    return (
+	render() {
+		return (
 			<div>
-				<nav className="navbar navbar-expand-lg navbar-light bg-light">
+				<nav
+					className={`navbar navbar-expand-lg navbar-${this.props.mode} bg-${this.props.mode}`}
+				>
 					<div className="container-fluid">
-            <a className="navbar-brand" href="/" style={{
-              fontWeight : 'bolder' 
-            }}>
-							Newsatonian
-						</a>
+						<Link
+							className="navbar-brand"
+							to="/"
+							style={{
+								fontWeight: "bolder",
+							}}
+						>
+							Newstation
+						</Link>
 						<button
 							className="navbar-toggler"
 							type="button"
@@ -24,17 +31,41 @@ export default class Navbar extends Component {
 						</button>
 						<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 							<div className="navbar-nav">
-								<a className="nav-link active" aria-current="page" href="/">
-									Home
-								</a>
-								<a className="nav-link" href="/">
-									Other News
-								</a>
+								<Link className="nav-link" to="/business">
+									Business
+								</Link>
+								<Link className="nav-link" to="/entertainment">
+									Entertainment
+								</Link>
+								<Link className="nav-link" to="/health">
+									Health
+								</Link>
+								<Link className="nav-link" to="/science">
+									Science
+								</Link>
+								<Link className="nav-link" to="/sports">
+									Sports
+								</Link>
+								<Link className="nav-link" to="/technology">
+									Technology
+								</Link>
 							</div>
 						</div>
 					</div>
+					<button
+						type="button"
+						onClick={this.props.toggleMode}
+						className={`btn btn-${
+							this.props.mode === "dark" ? "light" : "dark"
+						} mx-3`}
+						style={{
+							width: "140px",
+						}}
+					>
+						{this.props.mode === "dark" ? "Light Mode" : "Dark Mode"}
+					</button>
 				</nav>
 			</div>
 		);
-  }
+	}
 }
