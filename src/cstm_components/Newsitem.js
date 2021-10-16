@@ -14,6 +14,10 @@ export class Newsitem extends Component {
 						color: mode === "light" ? "black" : "white",
 						backgroundColor:
 							mode === "light" ? "rgb(249, 249, 249)" : "rgb(29, 29, 29)",
+						boxShadow:
+							mode === "dark"
+								? "none"
+								: "rgb(133, 133, 133) -2px -2px 40px",
 						border: "none",
 					}}
 				>

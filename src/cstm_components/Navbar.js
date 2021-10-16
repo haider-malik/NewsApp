@@ -51,19 +51,24 @@ export default class Navbar extends Component {
 								</Link>
 							</div>
 						</div>
+						<button
+							type="button"
+							onClick={this.props.toggleMode}
+							className={`btn mr-3`}
+							style={{
+								width: "110px",
+								height: "40px",
+								right: "20px",
+								color: this.props.mode === "dark" ? "white" : "black",
+								backgroundColor:
+									this.props.mode === "dark"
+										? "rgb(29, 29, 29)"
+										: "white",
+							}}
+						>
+							{this.props.mode === "dark" ? "Light Mode" : "Dark Mode"}
+						</button>
 					</div>
-					<button
-						type="button"
-						onClick={this.props.toggleMode}
-						className={`btn btn-${
-							this.props.mode === "dark" ? "light" : "dark"
-						} mx-3`}
-						style={{
-							width: "140px",
-						}}
-					>
-						{this.props.mode === "dark" ? "Light Mode" : "Dark Mode"}
-					</button>
 				</nav>
 			</div>
 		);
