@@ -8,7 +8,6 @@ const Newsbox = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [totalResults, settotalResults] = useState(0);
-	const [status, setStatus] = useState("200");
 
 	// function to capitalise first letter of a word
 	const capitalize = (string) => {
@@ -28,11 +27,6 @@ const Newsbox = (props) => {
 		props.setProgress(70);
 
 		// setting the state of the component
-		setStatus(parsedData.status);
-		if (status === "error") {
-			document.title = "Can't Fetch News";
-			return;
-		}
 		setArticles(parsedData.articles);
 		setPage(page + pageNo);
 		setLoading(false);
@@ -52,11 +46,6 @@ const Newsbox = (props) => {
 		let data = await fetch(url);
 		let parsedData = await data.json();
 
-		setStatus(parsedData.status);
-		if (status === "error") {
-			document.title = "Can't Fetch News";
-			props.setProgress(100);
-		}
 		setArticles(articles.concat(parsedData.articles));
 		setPage(page + 1);
 		settotalResults(parsedData.totalResults);
@@ -91,9 +80,9 @@ const Newsbox = (props) => {
 				{loading && <Spinner />} */}
 
 			<InfiniteScroll
-				dataLength={status === "error" ? 0 : articles.length}
+				dataLength={articles.length}
 				next={fetchMoreData}
-				hasMore={status !== "error" && articles.length !== totalResults}
+				hasMore={articles.length !== totalResults}
 				loader={<Spinner />}
 			>
 				<h2
@@ -116,7 +105,6 @@ const Newsbox = (props) => {
 					}}
 				>
 					{!loading &&
-						status !== "error" &&
 						articles.map((element) => {
 							return (
 								<div key={element.url} className="col-md-3">
