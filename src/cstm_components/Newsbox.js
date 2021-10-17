@@ -68,17 +68,6 @@ const Newsbox = (props) => {
 				backgroundColor: "transparent",
 			}}
 		>
-			{/* <h2
-					className="text-center my-3"
-					style={{
-						backgroundColor: "transparent",
-						zIndex: "-1",
-					}}
-				>
-					Top Headlines
-				</h2>
-				{loading && <Spinner />} */}
-
 			<InfiniteScroll
 				dataLength={articles.length}
 				next={fetchMoreData}
@@ -90,6 +79,7 @@ const Newsbox = (props) => {
 					style={{
 						backgroundColor: "transparent",
 						zIndex: "-1",
+						margin: "90px 0px",
 					}}
 				>
 					Top Headlines - {capitalize(props.category)}
